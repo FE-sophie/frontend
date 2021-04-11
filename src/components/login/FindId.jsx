@@ -8,7 +8,6 @@ import Modalform from './Modalform';
 import Modal from './Modal';
 import { findLoginInfo, resetData } from '../../modules/login';
 import { useDispatch, useSelector } from 'react-redux';
-// import account from '../img/account';
 
 const FindId = ({ findUserId, history }) => {
   const [modal, setModal] = useState(false);
@@ -18,13 +17,12 @@ const FindId = ({ findUserId, history }) => {
   });
   const findInfo = useSelector(state => state.login.findInfo);
   const modalOpen = useSelector(state => state.login.modalOpen);
-  const notFound = useSelector(state => state.login.notFound);
   const { u_name, u_email } = inputs;
   const dispatch = useDispatch();
+  const { pathname } = history.location;
   useEffect(() => {
-    const { pathname } = history.location;
     if (pathname === '/shop/account/find_id') dispatch(resetData());
-  }, []);
+  }, [dispatch, pathname]);
   return (
     <LoginFormStyle>
       <form onSubmit={onSubmitInfo}>

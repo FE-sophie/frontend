@@ -9,7 +9,6 @@ import Title from './Title';
 import { Link, withRouter } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import { loginAuthentication, setLogInAndOut } from '../../modules/login';
-import { useCookies } from 'react-cookie';
 
 export const LoginFormStyle = styled.div`
   width: 340px;
@@ -18,11 +17,7 @@ export const LoginFormStyle = styled.div`
 `;
 
 const Login = ({ history }) => {
-  const [login, setLogin] = useState(false);
-  const loginInfo = useSelector(state => state.login.member);
   const modalOpen = useSelector(state => state.login.modalOpen);
-  const [cookies, setCookie, removeCookie] = useCookies(['auth']);
-  const cookieAuth = cookies.auth;
   const [user, setUser] = useState({
     u_id: '',
     u_password: '',

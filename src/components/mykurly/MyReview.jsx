@@ -13,12 +13,12 @@ import { getReviewList } from '../../modules/review';
 const MyReview = ({ history }) => {
   const dispatch = useDispatch();
 
-  const [cookies, setCookie, removeCookie] = useCookies(['auth']);
+  const [cookies] = useCookies(['auth']);
   const cookieAuth = cookies.auth;
   useEffect(() => {
     dispatch(getReviewList('viewBeforeList', cookieAuth));
     dispatch(getReviewList('viewAfterList', cookieAuth));
-  }, []);
+  }, [dispatch, cookieAuth]);
   return (
     <>
       <MyKurlyHeader />
@@ -94,15 +94,17 @@ const MyReviewBlock = ({ dispatch, cookieAuth }) => {
         </div>
         {tabView === 'viewBeforeList' ? <WriteReview onClick={openCartModal} /> : <WrittenReview />}
       </div>
-      {/* <CartModal
-        // product_id={itemDetail.product_id}
-        modalIsOpen={modalIsOpen}
-        closeModal={closeCartModal}
-        productName={itemDetail.name}
-        originalPrice={itemDetail.original_price}
-        discounted_price={itemDetail.discounted_price}
-        discount_percent={itemDetail.discount_percent}
-      /> */}
+      {modalIsOpen && (
+        <CartModal
+          product_id={itemDetail.product_id}
+          modalIsOpen={modalIsOpen}
+          closeModal={closeCartModal}
+          productName={itemDetail.name}
+          originalPrice={itemDetail.original_price}
+          discounted_price={itemDetail.discounted_price}
+          discount_percent={itemDetail.discount_percent}
+        />
+      )}
     </div>
   );
 

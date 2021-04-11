@@ -137,14 +137,17 @@ const PassInput = ({
         pwRegExp2.test(value) ? setValidPass4(false) : setValidPass4(true);
         setInputs({
           ...inputs,
-          changePssword: value,
+          password: value,
         });
         break;
       case 'CheckPassword':
-        console.log();
         passRef.current.value && passRef.current.value === value
           ? setValidRePass(true)
           : setValidRePass(false);
+        setInputs({
+          ...inputs,
+          checkPassword: value,
+        });
         break;
       default:
         break;

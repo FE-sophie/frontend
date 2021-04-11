@@ -29,10 +29,20 @@ const WriteReviewItem = ({ onClick }) => {
                 <ul>
                   <li className="text-r-1.4 border border-kg-80 py-6 px-8 mb-5">
                     <div className="inline-block w-32 h-32 align-middle">
-                      <img src={list_img_url} alt="" className="inline-block w-full h-full" />
+                      <img
+                        src={
+                          product_id === 2
+                            ? 'https://img-cf.kurly.com/shop/data/goods/1583285919646l0.jpg'
+                            : list_img_url
+                        }
+                        alt=""
+                        className="inline-block w-full h-full"
+                      />
                     </div>
                     <div className="inline-block align-middle w-p-370 px-8">
-                      <h3 className="text-r-1.4 text-kg-350 pb-2">{product_name}</h3>
+                      <h3 className="text-r-1.4 text-kg-350 pb-2">
+                        {product_id === 2 ? '한끼 당근 1개' : product_name}
+                      </h3>
                       {/* <p className="font-medium pb-4">[처카넛베이] 뉴욕 치즈 케이크 클래식 113g</p> */}
                       <span className="block mt-4 text-kg-400">1개 구매</span>
                     </div>

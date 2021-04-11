@@ -5,7 +5,7 @@ import Title from './Title';
 import Button from './Button';
 import Modalform from './Modalform';
 import Modal from './Modal';
-import { findLoginInfo, resetData } from '../../modules/login';
+import { findLoginInfo } from '../../modules/login';
 import { useDispatch, useSelector } from 'react-redux';
 import { useRef } from 'react';
 import { withRouter } from 'react-router';
@@ -25,7 +25,6 @@ const FindPassword = withRouter(({ history }) => {
   });
   const findInfo = useSelector(state => state.login.findInfo);
   const modalOpen = useSelector(state => state.login.modalOpen);
-  const changeSuccess = useSelector(state => state.login.changePassword);
   const { u_name, u_id, u_email } = inputs;
   const { modal, modalValue } = form;
   const passRef = useRef();

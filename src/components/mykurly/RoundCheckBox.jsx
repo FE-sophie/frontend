@@ -3,7 +3,6 @@ import React from 'react';
 import { IoIosCheckmarkCircle, IoIosCheckmarkCircleOutline } from 'react-icons/io';
 
 const RoundCheckBox = ({ is_main, id, state, value, onChange }) => {
-  console.log(state, id);
   return (
     <>
       <input

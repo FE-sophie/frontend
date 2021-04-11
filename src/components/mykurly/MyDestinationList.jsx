@@ -12,9 +12,8 @@ import { useCookies, withCookies } from 'react-cookie';
 import { getMyDestination, modifyDestination } from '../../modules/desination';
 
 const MyDestinationList = ({ history }) => {
-  const [cookies, setCookie, removeCookie] = useCookies(['auth']);
+  const [cookies] = useCookies(['auth']);
   const cookieAuth = cookies.auth;
-  const member = useSelector(state => state.login.member);
   const dispatch = useDispatch();
   useEffect(() => {
     dispatch(getMyDestination(cookieAuth));
@@ -22,7 +21,7 @@ const MyDestinationList = ({ history }) => {
       alert('로그인 후 이용해주세요');
       history.push('/shop/account/signin');
     }
-  }, []);
+  }, [cookieAuth, dispatch, history]);
   return (
     <>
       <MyKurlyHeader />
@@ -88,11 +87,10 @@ const MyDestinationBlock = () => {
 const MyDestinationListItem = () => {
   const destination = useSelector(state => state.destination);
   const { modalOpen, data: destinationList } = destination;
-  const main = destinationList.length ? destinationList.find(v => v.is_main === 1).id : false;
   const [modal, setModal] = useState(false);
   const [htmlfor, setHtmlFor] = useState('');
-  const [checked, setChecked] = useState(main);
-  const [cookies, setCookie, removeCookie] = useCookies(['auth']);
+  const [checked, setChecked] = useState('');
+  const [cookies] = useCookies(['auth']);
   const dispatch = useDispatch();
   const cookieAuth = cookies.auth;
   return (
@@ -110,7 +108,11 @@ const MyDestinationListItem = () => {
                   onChange={onChangeInput}
                   htmlfor={htmlfor}
                   is_main={is_main}
-                  state={checked}
+                  state={
+                    checked || destinationList.length
+                      ? destinationList.find(v => v.is_main === 1).id
+                      : false
+                  }
                 />
                 {modalOpen && (
                   <Modalform id="modal">

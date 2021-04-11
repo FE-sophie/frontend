@@ -114,7 +114,6 @@ const PassInput = ({
         pwRegExp2.test(value) ? setValidPass3(false) : setValidPass3(true);
         break;
       case 'CheckPassword':
-        console.log();
         passRef.current.value && passRef.current.value === value
           ? setValidRePass(true)
           : setValidRePass(false);

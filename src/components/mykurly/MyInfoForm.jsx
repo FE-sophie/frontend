@@ -1,7 +1,5 @@
 import React, { useRef, useState } from 'react';
-import { useEffect } from 'react';
-import { useSelector } from 'react-redux';
-import { dispatch } from '../../../node_modules/rxjs/internal/observable/range';
+import { useDispatch, useSelector } from 'react-redux';
 import { myInfoModify } from '../../modules/myInfo';
 import CheckBox from '../signup/CheckBox';
 import FormInput from '../signup/FormInput';
@@ -12,8 +10,10 @@ import PassInput from './MyCurlyPassInput';
 import SignupButton from '../signup/SignupButton';
 import SignupModal from '../signup/SignupModal';
 import { useCookies, withCookies } from 'react-cookie';
+import { withRouter } from 'react-router';
 
-const MyInfoForm = () => {
+const MyInfoForm = ({ history }) => {
+  const dispatch = useDispatch();
   const formTitle = 'pb-14 border-b-2 border-solid border-kg-400 font-medium text-r-24';
   const regForm = 'text-r-1.4 mt-4';
   const regTitle = 'text-left align-top pt-7 ';
@@ -50,23 +50,25 @@ const MyInfoForm = () => {
   const [inputs, setInputs] = useState({
     uid: '',
     password: '',
-    changePssword: '',
+    checkPassword: '',
     name: '',
     email: '',
     phone: '',
     date_of_birth: { birthY: '', birthM: '', birthD: '' },
     gender: '',
     address: '',
-    checkSns: { sms: '', email: '' },
+    check_sns: '',
+    check_term: '',
   });
   const {
     password,
     gender,
-    // checkSns,
+    check_sns,
+    check_term,
     email,
     name,
     phone,
-    changePssword,
+    checkPassword,
     date_of_birth: { birthY, birthM, birthD },
   } = inputs;
   const [originPassword, setOriginPassword] = useState('');
@@ -78,9 +80,9 @@ const MyInfoForm = () => {
     u_email,
     u_gender,
     u_phone,
-    u_agree2,
     u_date_of_birth,
-    // u_sns,
+    u_checkSns,
+    u_checkTerm,
   } = getMyInfo;
   const originRef = useRef();
 
@@ -90,9 +92,8 @@ const MyInfoForm = () => {
   const passSub = useRef();
   const rePassSub = useRef();
 
-  const [cookies, setCookie, removeCookie] = useCookies(['auth', 'id']);
+  const [cookies] = useCookies(['auth', 'id']);
   const cookieAuth = cookies.auth;
-  useEffect(() => {}, []);
   return (
     <div className="w-r-85 h-full mt-20 mb-14 font-normal">
       <h1 className={formTitle}>개인 정보 수정</h1>
@@ -248,9 +249,13 @@ const MyInfoForm = () => {
               <td colSpan="2" className={`${borderBottom} relative`}>
                 <CheckBox
                   id="agree2"
-                  state={(agree2 && u_agree2) || agree2}
+                  state={u_checkTerm === 1 ? true : agree2}
                   ref={agree2Ref}
-                  onChange={() => setAgree2(!agree2)}
+                  onChange={e => {
+                    const { checked } = e.target;
+                    setAgree2(!agree2);
+                    setInputs({ ...inputs, check_term: checked ? 1 : 0 });
+                  }}
                 >
                   개인정보 수집·이용 동의 <span className="sub">(선택)</span>
                   <span
@@ -265,21 +270,25 @@ const MyInfoForm = () => {
             <tr>
               <th className={regTitle}>이용약관동의</th>
               <td className="py-4" colSpan="2">
-                <CheckBox id="info" state={info} ref={infoRef} onChange={onSnsAll}>
+                <CheckBox
+                  id="info"
+                  state={u_checkSns === 3 ? true : info}
+                  ref={infoRef}
+                  onChange={onSnsAll}
+                >
                   무료배송, 할인쿠폰 등 혜택/정보 수신 동의<span className="sub">(선택))</span>
                 </CheckBox>
                 <div className="pl-14">
                   <CheckBox
                     id="sms"
-                    // state={sms}
-                    state={sms}
+                    state={u_checkSns === 1 || u_checkSns === 3 ? true : sms}
                     ref={smsRef}
                     onChange={e => {
-                      const { checked, id } = e.target;
+                      const { checked } = e.target;
                       setSms(!sms);
                       setInputs({
                         ...inputs,
-                        checkSns: { ...inputs.checkSns, [id]: checked },
+                        check_sns: { ...inputs, check_sns: checked ? 1 : u_checkSns === 3 ? 2 : 0 },
                       });
                     }}
                     sub={true}
@@ -288,13 +297,12 @@ const MyInfoForm = () => {
                   </CheckBox>
                   <CheckBox
                     id="userEmail"
-                    // state={userEmail || u_sns.email}
-                    state={userEmail}
+                    state={u_checkSns === 2 || u_checkSns === 3 ? true : userEmail}
                     ref={emailRef2}
                     onChange={e => {
-                      const { id, checked } = e.target;
+                      const { checked } = e.target;
                       setEmail(!userEmail);
-                      setInputs({ ...inputs, checkSns: { ...inputs.checkSns, [id]: checked } });
+                      setInputs({ ...inputs, check_sns: checked ? 2 : u_checkSns === 3 ? 1 : 0 });
                     }}
                     sub={true}
                   >
@@ -338,38 +346,38 @@ const MyInfoForm = () => {
       ...inputs,
       uid: u_id,
       password: u_origin_password,
-      changePssword,
+      checkPassword,
       name: u_name || name,
       email: u_email || email,
       phone: u_phone || phone,
       date_of_birth: `${year}-${month}-${day}` || `${birthY}-${birthM}-${birthD}`,
       gender: u_gender || gender,
-      // checkSnS: {
-      // sms: u_sns.sms || checkSns.sms,
-      // email: u_sns.email || checkSns.email,
-      // info: u_sns.info || (checkSns.sms && checkSns.email),
-      // },
+      check_sns: check_sns ? check_sns : u_checkSns,
+      check_term: check_term ? check_term : u_checkTerm,
     });
   }
   function secession() {}
 
   function clickButton(params) {}
 
-  function onSnsAll(e) {
+  function onSnsAll() {
     setInfo(!info);
     setSms(!info);
     setEmail(!info);
+    setInputs({
+      ...inputs,
+      check_sns: 3,
+    });
   }
 
   function onSubmit(e) {
     e.preventDefault();
-    console.log(inputs);
     if (originPassword.length > 0) {
       if (originPassword !== u_origin_password) {
         setSignup(true);
         setModalValue('현재 비밀번호를  확인해주세요');
         originRef.current.focus();
-      } else if (originPassword === u_origin_password) {
+      } else if (password !== checkPassword) {
         setSignup(true);
         setModalValue('새비밀번호를  확인해주세요');
         passRef.current.focus();
@@ -380,6 +388,8 @@ const MyInfoForm = () => {
       emailRef.current.focus();
     } else {
       dispatch(myInfoModify(inputs, cookieAuth));
+      alert('회원정보수정이 완료되었습니다.');
+      history.push('/');
     }
   }
 
@@ -421,4 +431,4 @@ const MyInfoForm = () => {
   }
 };
 
-export default withCookies(MyInfoForm);
+export default withRouter(withCookies(MyInfoForm));

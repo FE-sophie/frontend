@@ -7,18 +7,16 @@ import Modalform from '../login/Modalform';
 import { useDispatch, useSelector } from 'react-redux';
 import { useState } from 'react';
 import { withCookies, useCookies } from 'react-cookie';
-import { getMemberMyInfo } from '../../modules/myInfo';
+import { getMemberMyInfo, modalClose } from '../../modules/myInfo';
 import { withRouter } from 'react-router-dom';
 
 const MyInfo = ({ history }) => {
-  const [info, SetInfo] = useState(false);
   const [modal, setModal] = useState(false);
-  const [modalValue, setModalValue] = useState('');
   const myInfo = useSelector(state => state.myInfo);
   const member = useSelector(state => state.login.member);
   const { modalOpen, message } = myInfo;
   const dispatch = useDispatch();
-  const [cookies, setCookie, removeCookie] = useCookies(['auth']);
+  const [cookies] = useCookies(['auth']);
   const cookieAuth = cookies.auth;
   const [password, setPassword] = useState('');
   // const cookieId = cookies.id;
@@ -31,7 +29,7 @@ const MyInfo = ({ history }) => {
       alert('비정상적인 접속으로 메인화면으로 이동합니다.');
       history.push('/');
     }
-  }, []);
+  }, [cookieAuth, history, member.name]);
   return (
     <>
       <MyKurlyHeader />
@@ -42,12 +40,12 @@ const MyInfo = ({ history }) => {
         ) : (
           <MyInfoModify />
         )}
-        {modalOpen ? (
+        {modalOpen && modal ? (
           <Modalform id="modal">
             <Modal
               modal={modal}
               closeModal={closeModal}
-              value={modalValue || '비밀번호를 정확하게 입력해주세요'}
+              value={'비밀번호를 정확하게 입력해주세요'}
             />
           </Modalform>
         ) : (
@@ -65,6 +63,7 @@ const MyInfo = ({ history }) => {
     setModal(true);
   }
   function closeModal() {
+    dispatch(modalClose());
     setModal(false);
   }
 };

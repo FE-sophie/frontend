@@ -10,7 +10,6 @@ import MyOrderViewDetails from './MyOrderViewDetails';
 import MyOrderViewItem from './MyOrderViewItem';
 import Modalform from '../login/Modalform';
 import Modal from '../login/Modal';
-import { getProductInfo } from '../../modules/itemDetail';
 import { useCookies, withCookies } from 'react-cookie';
 const MyOrderView = () => {
   return (
@@ -32,7 +31,7 @@ const MyOrderViewBlock = withRouter(({ history }) => {
   const postSuccess = useSelector(state => state.order.posts);
   const [modal, setModal] = useState(false);
   const dispatch = useDispatch();
-  const [cookies, setCookie, removeCookie] = useCookies(['auth']);
+  const [cookies] = useCookies(['auth']);
   const member = useSelector(state => state.login.member);
   const cookieAuth = cookies.auth;
   useEffect(() => {
@@ -41,11 +40,10 @@ const MyOrderViewBlock = withRouter(({ history }) => {
       history.push('/shop/account/signin');
     } else if (cookieAuth && !member.name) {
       alert('비정상적인 접속으로 메인화면으로 이동합니다.');
-      removeCookie('auth');
       history.push('/');
     }
     dispatch(getOrderDetail(ordno, cookieAuth));
-  }, []);
+  }, [cookieAuth, dispatch, history, member.name, ordno]);
 
   const [cartItem, setCartItem] = useState({
     product_id: '',

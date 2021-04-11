@@ -1,9 +1,9 @@
-import React, { useEffect } from 'react';
+import React from 'react';
 import { Link, withRouter } from 'react-router-dom';
 import { BsChevronRight } from 'react-icons/bs';
 import mykurlybanner from '../../img/mykurlybanner.jpg';
 import { useSelector } from 'react-redux';
-import { useCookies, withCookies } from 'react-cookie';
+import { withCookies } from 'react-cookie';
 
 const li_sm = 'float-left align-middle w-r-19.7 h-r-17.8 bg-white p-12';
 const detail_wrapper = 'mt-r-3.5 text-kp-600 leading-none';

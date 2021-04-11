@@ -1,5 +1,4 @@
 import React from 'react';
-import MyKurlyPageNation from './MyKurlyPageNation';
 import MyKurlyHeader from './MyKurlyHeader';
 import MyKurlyCategory from './MyKurlyCategory';
 import { GoPrimitiveSquare } from 'react-icons/go';
@@ -8,7 +7,7 @@ import { useCookies } from 'react-cookie';
 import { withRouter } from 'react-router-dom';
 import { useSelector } from 'react-redux';
 const MyCoupon = ({ history }) => {
-  const [cookies, setCookie, removeCookie] = useCookies(['auth']);
+  const [cookies, , removeCookie] = useCookies(['auth']);
   const cookieAuth = cookies.auth;
   const member = useSelector(state => state.login.member);
   useEffect(() => {
@@ -16,11 +15,9 @@ const MyCoupon = ({ history }) => {
       alert('로그인 후 이용해주세요');
       history.push('/shop/account/signin');
     } else if (cookieAuth && !member.name) {
-      alert('비정상적인 접속으로 메인화면으로 이동합니다.');
       removeCookie('auth');
-      history.push('/');
     }
-  }, []);
+  }, [cookieAuth, history, member.name, removeCookie]);
   return (
     <>
       <MyKurlyHeader />

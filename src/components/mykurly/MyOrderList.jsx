@@ -10,7 +10,7 @@ import MyOrderListItem from './MyOrderListItem';
 import { useCookies, withCookies } from 'react-cookie';
 
 const MyOrderList = ({ history }) => {
-  const [cookies, setCookie, removeCookie] = useCookies(['auth']);
+  const [cookies] = useCookies(['auth']);
   const cookieAuth = cookies.auth;
   const QueryString = history.location.search;
   const member = useSelector(state => state.login.member);
@@ -25,10 +25,9 @@ const MyOrderList = ({ history }) => {
       history.push('/shop/account/signin');
     } else if (cookieAuth && !member.name) {
       alert('비정상적인 접속으로 메인화면으로 이동합니다.');
-      removeCookie('auth');
       history.push('/');
     }
-  }, [QueryString]);
+  }, [QueryString, cookieAuth, dispatch, history, member.name]);
 
   return (
     <>

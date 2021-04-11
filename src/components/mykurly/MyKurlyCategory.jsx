@@ -17,7 +17,7 @@ const category = [
 const myKurly_menu =
   'w-80 border border-kg-80 border-b-0 last:border text-r-1.4 text-kg-350 hover:text-kp-600 hover:bg-kg-50 leading-none';
 const MyKurlyCategory = () => {
-  const [cookies, setCookie, removeCookie] = useCookies(['auth']);
+  const [cookies] = useCookies(['auth']);
   const cookieAuth = cookies.auth;
   const dispatch = useDispatch();
   return (

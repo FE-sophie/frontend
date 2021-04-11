@@ -41,7 +41,7 @@ export function* itemDetailSaga() {
 }
 
 const initialState = {
-  info: null,
+  info: { product_id: '' },
   error: null,
   modalInfo: {
     isOpen: false,

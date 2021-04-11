@@ -1,7 +1,7 @@
 import React, { useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import { useCookies, withCookies } from 'react-cookie';
-import { useDispatch, useSelector } from 'react-redux';
+import { useDispatch } from 'react-redux';
 import { getReviewList } from '../../modules/review';
 import { logoutAuthentication } from '../../modules/login';
 const listStyle =
@@ -18,8 +18,8 @@ const MyKurlyDropDown = ({ onMouseOut }) => {
     { text: '개인 정보 수정', url: '/shop/member/myinfo' },
     { text: '로그아웃', url: '/shop/account/signin' },
   ];
-  const [cookies, setCookie, removeCookie] = useCookies(['auth']);
-  const loginInfo = useSelector(state => state.login.member);
+  const [cookies] = useCookies(['auth']);
+  const cookieAuth = cookies.auth;
   const dispatch = useDispatch();
   useEffect(() => {}, []);
   return (
@@ -48,11 +48,10 @@ const MyKurlyDropDown = ({ onMouseOut }) => {
     </ul>
   );
   function setLogout() {
-    removeCookie('auth');
-    dispatch(logoutAuthentication(loginInfo.token));
+    dispatch(logoutAuthentication(cookieAuth));
   }
   function getReview() {
-    dispatch(getReviewList('viewBeforeList', loginInfo.token));
+    dispatch(getReviewList('viewBeforeList', cookieAuth));
   }
 };
 

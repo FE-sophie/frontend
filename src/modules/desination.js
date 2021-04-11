@@ -15,10 +15,9 @@ const requestOfDestinationItem = createAction(
   REQUEST_OF_DESTINATION_ITEM,
   (destinationList, itemId) => ({
     ...destinationList.find(item => item.id === itemId),
-    member: destination[0].member,
   }),
 );
-const modifyMainSuccess = createAction(MODIFY_MAIN_SUCCESS, (data, member) => ({ data, member }));
+// const modifyMainSuccess = createAction(MODIFY_MAIN_SUCCESS, (data, member) => ({ data, member }));
 const requestOfDestinationFail = createAction(REQUEST_OF_DESTINATION_FAIL, error => error);
 
 export const getMyDestination = (authToken, id) => async dispatch => {
@@ -100,11 +99,14 @@ const destination = handleActions(
       modalOpen: true,
       error: false,
     }),
-    [REQUEST_OF_DESTINATION_ITEM]: (state, { payload }) => ({
-      ...state,
-      item: payload,
-      error: false,
-    }),
+    [REQUEST_OF_DESTINATION_ITEM]: (state, { payload }) => {
+      console.log(payload);
+      return {
+        ...state,
+        item: payload,
+        error: false,
+      };
+    },
   },
   initialize,
 );

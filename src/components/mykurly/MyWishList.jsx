@@ -18,15 +18,15 @@ import { withRouter } from 'react-router-dom';
 import { useCookies, withCookies } from 'react-cookie';
 
 const MyWishList = ({ history, match }) => {
+  const [cookies] = useCookies(['auth']);
   const dispatch = useDispatch();
-  const [cookies, setCookie, removeCookie] = useCookies(['auth']);
   const cookieAuth = cookies.auth;
-  // useEffect(() => {
-  //   if (!cookieAuth) {
-  //     alert('로그인 후 이용해주세요');
-  //     history.push('/shop/account/signin');
-  //   }
-  // }, [dispatch]);
+  useEffect(() => {
+    if (!cookieAuth) {
+      alert('로그인 후 이용해주세요');
+      history.push('/shop/account/signin');
+    }
+  }, [dispatch, history, cookieAuth]);
   return (
     <>
       <MyKurlyHeader />
@@ -44,10 +44,11 @@ const MyWishListBlock = withRouter(({ history }) => {
   const checkedList = useSelector(state => state.wish.checkedList);
   const QueryString = history.location.search;
   const dispatch = useDispatch();
-
+  const [cookies] = useCookies(['auth']);
+  const cookieAuth = cookies.auth;
   useEffect(() => {
     dispatch(getWishItems(QueryString, cookieAuth));
-  }, [QueryString]);
+  }, [QueryString, cookieAuth, dispatch]);
 
   const [cartItem, setCartItem] = useState({
     product_id: '',
@@ -58,8 +59,6 @@ const MyWishListBlock = withRouter(({ history }) => {
   });
 
   const { product_id, name, original_price, discounted_price, discount_percent } = cartItem;
-  const [cookies, setCookie, removeCookie] = useCookies(['auth']);
-  const cookieAuth = cookies.auth;
   return (
     <div className="float-left align-middle w-r-85 h-full mt-20 mb-6 px-12 pb-32 box-border">
       <h1 className="a11y-hidden">배송지 확인</h1>

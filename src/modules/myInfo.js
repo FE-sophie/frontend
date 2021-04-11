@@ -4,12 +4,14 @@ import axios from 'axios';
 
 const GET_MYINFO = 'mykurly/GET_MYINFO';
 const MYINFO_MODIFY = 'mykurly/MYINFO_MODIFY';
+const MODAL_CLOSE = 'mykurly/MODAL_CLOSE';
 const REQUEST_OF_MYINFO_SUCCESS = 'mykurly/REQUEST_OF_MYINFO_SUCCESS';
 const REQUEST_OF_MYINFO_FAIL = 'mykurly/REQUEST_OF_MYINFO_FAIL';
 const CHANGED_MYINFO = 'mykurly/CHANGED_MYINFO';
 
 const getMyInfo = createAction(GET_MYINFO);
 const modifyMyInfo = createAction(MYINFO_MODIFY);
+export const modalClose = createAction(MODAL_CLOSE);
 
 export const requestOfMyInfoSuccess = createAction(
   REQUEST_OF_MYINFO_SUCCESS,
@@ -26,7 +28,8 @@ export const requestOfMyInfoSuccess = createAction(
       role,
       total_cost,
       uid,
-      // check_sns,
+      check_sns,
+      check_term,
     },
     pwd,
   ) => ({
@@ -45,11 +48,8 @@ export const requestOfMyInfoSuccess = createAction(
       u_phone: phone,
       u_role: role,
       u_id: uid,
-      // u_sns: {
-      //   info: check_sns.sms && check_sns.email,
-      //   sms: check_sns.sms,
-      //   email: check_sns.email,
-      // },
+      u_checkSns: check_sns,
+      u_checkTerm: check_term,
       u_total_cost: total_cost,
       u_origin_password: pwd,
     },
@@ -71,8 +71,30 @@ export const getMemberMyInfo = (authToken, password) => async dispatch => {
 };
 export const myInfoModify = (modifyInputs, authToken) => async (dispatch, getState) => {
   dispatch(modifyMyInfo());
+  const {
+    // uid,
+    // password,
+    // checkPassword,
+    name,
+    email,
+    phone,
+    date_of_birth,
+    gender,
+    check_sns,
+    check_term,
+  } = modifyInputs;
   try {
-    const res = await axios.put('http://3.35.221.9:8080/api/member/myinfo', modifyInputs, {
+    console.log('수정요청', modifyInputs);
+    const res = await axios.put('http://3.35.221.9:8080/api/member/myinfo', {
+      data: {
+        name,
+        email,
+        phone,
+        date_of_birth,
+        gender,
+        check_term,
+        check_sns,
+      },
       headers: {
         Authorization: `Bearer ${authToken}`,
       },
@@ -95,10 +117,12 @@ const myInfo = handleActions(
     [GET_MYINFO]: (state, { payload }) => ({
       ...state,
       loading: false,
+      modalOpen: false,
     }),
     [MYINFO_MODIFY]: (state, { payload }) => ({
       ...state,
       loading: false,
+      modalOpen: false,
     }),
     [REQUEST_OF_MYINFO_SUCCESS]: (state, { payload }) => ({
       ...state,
@@ -114,9 +138,13 @@ const myInfo = handleActions(
       modalOpen: true,
       error: payload,
     }),
+    [MODAL_CLOSE]: state => ({
+      ...state,
+      modalOpen: false,
+    }),
     [CHANGED_MYINFO]: (state, { payload }) => ({
       ...state,
-      modifyInputs: { ...state.myInfo, ...payload },
+      modifyInputs: { ...state.info, ...payload },
     }),
   },
   initialize,

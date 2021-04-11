@@ -25,6 +25,9 @@ const setCookie = function (name, value, exp) {
   date.setTime(date.getTime() + exp * 24 * 60 * 60 * 1000);
   document.cookie = name + '=' + value + ';expires=' + date.toUTCString() + ';path=/';
 };
+var deleteCookie = function (name) {
+  document.cookie = name + '=; expires=Thu, 01 Jan 1999 00:00:10 GMT;';
+};
 export const loginAuthentication = user => async dispatch => {
   dispatch(setLogInAndOut());
   try {
@@ -41,7 +44,6 @@ export const getLoginMember = authToken => async (dispatch, getState) => {
   try {
     const info = await loginAPI.getLoginMember(authToken);
     dispatch(getMemberInfo(info.data));
-    console.log(info.data);
   } catch (error) {
     dispatch(loginAndOutFail(error));
   }
@@ -67,6 +69,7 @@ export const logoutAuthentication = authToken => async dispatch => {
   dispatch(setLogInAndOut());
   try {
     const res = await loginAPI.setLogout(authToken);
+    deleteCookie('auth');
     dispatch(resetData());
     dispatch(logOutSuccess(res.data.message));
   } catch (error) {
