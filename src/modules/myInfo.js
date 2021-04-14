@@ -85,7 +85,9 @@ export const myInfoModify = (modifyInputs, authToken) => async (dispatch, getSta
   } = modifyInputs;
   try {
     console.log('수정요청', modifyInputs);
-    const res = await axios.put('http://3.35.221.9:8080/api/member/myinfo', {
+    const res = await axios({
+      method: 'put',
+      url: 'http://3.35.221.9:8080/api/member/myinfo',
       data: {
         name,
         email,

@@ -25,7 +25,15 @@ const AddCartModal = () => {
     <div className={AddCartModalStyle + (isOpen ? '' : ' transform scale-0 opacity-0')}>
       <div className=" bg-cartTriangle bg-no-repeat absolute bg-contain w-r-1.9 h-36 bg-center -top-r-5.1 right-r-1.4 " />
       <div className="flex justify-between">
-        <img className="w-r-4.6 h-r-6" src={itemDetail && itemDetail.list_image_url} alt="img" />
+        <img
+          className="w-r-4.6 h-r-6"
+          src={
+            itemDetail && itemDetail.list_image_url
+              ? itemDetail.list_image_url
+              : 'https://img-cf.kurly.com/shop/data/goods/1470380801697s0.jpg'
+          }
+          alt="img"
+        />
         <div className="text-r-1.4 font-medium w-r-24 flex flex-col justify-around">
           <div className="py-1 w-full">
             <NameBox className="text-p-14 text-gray-500">{itemDetail && itemDetail.name}</NameBox>

@@ -50,7 +50,19 @@ export const postInsertCart = (orderItem, authToken) => async (dispatch, getStat
 const initialize = {
   loading: false,
   data: { content: [] },
-  detail: { orderProducts: [], discount() {}, checkout() {} },
+  detail: {
+    orderProducts: [],
+    discount() {},
+    totalCheckout() {},
+    checkout() {},
+    discounted1() {},
+    reciever_name: '',
+    reciever_phone: '',
+    reciever_address: '서울시 강동구 암사동 룰루랄라아파트 103동 103호',
+    reciever_place: '문 앞',
+    reciever_visit_method: '',
+    arrived_alarm: '배송 직후',
+  },
   posts: false,
   error: null,
 };
@@ -67,7 +79,7 @@ const order = handleActions(
         ...action.payload,
         content: action.payload.content.map(orderitem => ({
           ...orderitem,
-          total_price: orderitem.total_price.toLocaleString(),
+          total_price: (orderitem.total_price + 3000).toLocaleString(),
         })),
       },
     }),
@@ -89,8 +101,18 @@ const order = handleActions(
           },
           delivery_cost: action.payload.checkout_total_price < 40000 ? 3000 : 0,
           checkout_total_price_str: action.payload.checkout_total_price.toLocaleString(),
+          discounted1() {
+            return (this.checkout_total_price - this.total_discount_price).toLocaleString;
+          },
           checkout() {
-            return (this.checkout_total_price + this.total_discount_price).toLocaleString();
+            return this.checkout_total_price.toLocaleString();
+          },
+          totalCheckout() {
+            return (
+              this.checkout_total_price -
+              this.total_discount_price +
+              this.delivery_cost
+            ).toLocaleString();
           },
         },
       };

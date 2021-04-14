@@ -4,7 +4,7 @@ const MyOrderViewDetails = ({ orderDetail, ordno }) => {
   const detailTitle = 'border-b-2 border-kg-300 pb-8 text-r-2 font-medium';
   const blindString = string => {
     if (!string) return '';
-    else return string.replace(string.substring(3, 7), '****');
+    else return string.replace(string.substring(4, 8), '****');
   };
   return (
     <>
@@ -25,7 +25,7 @@ const MyOrderViewDetails = ({ orderDetail, ordno }) => {
             <dd className="inline-block w-1/5 text-right text-kg-400">4,600원</dd> */}
           <dt className="inline-block w-4/5 text-kg-350">결제금액</dt>
           <dd className="inline-block w-1/5 text-right text-kg-400 font-medium">
-            {orderDetail.checkout_total_price_str}원
+            {orderDetail.totalCheckout()}원
           </dd>
           {/* <dt className="inline-block w-4/5 text-kg-350">적립예정금액</dt>
             <dd className="inline-block w-1/5 text-right text-kg-400">100원</dd> */}
@@ -41,7 +41,7 @@ const MyOrderViewDetails = ({ orderDetail, ordno }) => {
           <dt className="inline-block w-1/5 text-kg-350">주문 번호</dt>
           <dd className="inline-block w-4/5  text-kg-400">{ordno}</dd>
           <dt className="inline-block w-1/5 text-kg-350">주문자명</dt>
-          <dd className="inline-block w-4/5 text-kg-400">{orderDetail.orderer_name}</dd>
+          <dd className="inline-block w-4/5 text-kg-400">{orderDetail.orderer_name || '임정우'}</dd>
           <dt className="inline-block w-1/5 text-kg-350">보내는 분</dt>
           <dd className="inline-block w-4/5 text-kg-400">{orderDetail.sender_name}</dd>
           <dt className="inline-block w-1/5 text-kg-350">결제일시</dt>
@@ -52,11 +52,13 @@ const MyOrderViewDetails = ({ orderDetail, ordno }) => {
         <h3 className={`${detailTitle}`}>배송 정보</h3>
         <dl className="text-r-1.6 py-4 text-kg-350 leading-r-5 border-b border-kg-80">
           <dt className="inline-block w-1/5 text-kg-350">받는 분</dt>
-          <dd className="inline-block w-4/5  text-kg-400">{orderDetail.reciever_name}</dd>
+          <dd className="inline-block w-4/5  text-kg-400">
+            {orderDetail.reciever_name || '임정우'}
+          </dd>
           <dt className="inline-block w-1/5 text-kg-350">핸드폰</dt>
           <dd className="inline-block w-4/5  text-kg-400">
             {/* {orderDetail.reciever_phone} */}
-            {blindString(orderDetail.reciever_phone)}
+            {blindString(orderDetail.reciever_phone || '010-0000-0000')}
           </dd>
           {/* <dt className="inline-block w-1/5 text-kg-350">배송방법</dt>
             <dd className="inline-block w-4/5  text-kg-400">샛별배송</dd> */}

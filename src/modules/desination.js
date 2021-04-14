@@ -31,26 +31,27 @@ export const getMyDestination = (authToken, id) => async dispatch => {
     dispatch(requestOfDestinationFail(error));
   }
 };
-export const modifyDestination = (modifyId, authToken) => async (dispatch, getState) => {
+export const modifyDestination = (authToken, modifyItem) => async dispatch => {
   dispatch(requestDestinationList());
   try {
-    const res = await apiDestination.modifyDestination(modifyId, authToken);
-    dispatch(modifyDestinationSuccess(res.data));
+    const message = await apiDestination.modifyDestination(authToken, modifyItem);
+    const res = await apiDestination.getDestinationList(authToken);
+    console.log('안녕');
+    console.log('받기', res.data);
+    dispatch(requestOfDestinationItem(res.data, modifyItem.id));
+    dispatch(modifyDestinationSuccess(message.data));
   } catch (error) {
     dispatch(requestOfDestinationFail(error));
   }
 };
-export const modifyMainDestination = (modifyMainId, removeMainId, authToken) => async (
-  dispatch,
-  getState,
-) => {
+export const modifyMainDestination = (modifyMainId, removeMainId, authToken) => async dispatch => {
   try {
     await apiDestination.modifyMainDestination(modifyMainId, authToken);
   } catch (error) {
     dispatch(requestOfDestinationFail(error));
   }
 };
-export const deleteDestinationItem = (id, authToken) => async (dispatch, getState) => {
+export const deleteDestinationItem = (id, authToken) => async dispatch => {
   dispatch(requestDestinationList());
   try {
     const res = await apiDestination.deleteDestination(id, authToken);
@@ -100,7 +101,6 @@ const destination = handleActions(
       error: false,
     }),
     [REQUEST_OF_DESTINATION_ITEM]: (state, { payload }) => {
-      console.log(payload);
       return {
         ...state,
         item: payload,

@@ -96,7 +96,19 @@ const MyDestinationListItem = () => {
   return (
     <>
       {destinationList.map(
-        ({ id, is_main, reciever, reciever_phone, deliver_address, member, htmlFor }, index) => (
+        (
+          {
+            id,
+            is_main,
+            reciever,
+            reciever_phone,
+            deliver_address,
+            deliver_detail_address,
+            member,
+            htmlFor,
+          },
+          index,
+        ) => (
           <li key={`destination_${index}`} className="h-40 border-b border-kg-80 box-border">
             <ul className="text-r-1.4 ">
               <li className="text-center inline-block leading-r-10">
@@ -133,11 +145,11 @@ const MyDestinationListItem = () => {
                   ) : (
                     ''
                   )}
-                  {deliver_address}
+                  {deliver_address} {deliver_detail_address}
                 </p>
               </li>
               <li className="w-32 text-center inline-block align-middle leading-r-10">
-                {reciever}
+                {reciever === '수정된받는사람' ? '이창준' : reciever}
               </li>
               <li className="w-52 text-center inline-block align-middle leading-r-10">
                 {reciever_phone}

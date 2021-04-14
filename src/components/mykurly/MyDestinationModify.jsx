@@ -30,17 +30,18 @@ const MyDestinationModify = ({ location, history }) => {
     deliver_address,
     is_main,
     deliver_detail_address,
+    member,
   } = destinationItem;
-  console.log('아이템', destinationItem);
   const [inputs, setInputs] = useState({
-    deliver_address: `${deliver_address}`,
-    deliver_detail_address: deliver_detail_address,
-    reciever: reciever,
-    reciever_phone: reciever_phone,
+    id,
+    deliver_address,
+    reciever,
+    reciever_phone,
+    is_main,
   });
   return (
     <div className="my-10 px-10 text-r-1.4 font-medium text-kg-350">
-      <form>
+      <form onSubmit={onSubmit}>
         <h1 className="a11y-hidden">배송지 </h1>
         <div className="pb-6">
           <h2 className=" mr-6 text-r-2.4 mb-6 text-kg-400">배송지 수정</h2>
@@ -54,7 +55,7 @@ const MyDestinationModify = ({ location, history }) => {
             id="deliver_detail_address"
             type="text"
             onChange={onChange}
-            defaultValue={inputs.deliver_detail_address && deliver_detail_address}
+            defaultValue={inputs.deliver_detail_address || deliver_detail_address}
             className="w-full my-3 py-4 font-medium px-8 border-kg-80 border rounded
         "
           />
@@ -98,11 +99,25 @@ const MyDestinationModify = ({ location, history }) => {
     </div>
   );
   function onClick(e) {
+    setInputs({
+      ...inputs,
+      id: +dtn_id,
+      is_main: inputs.is_main ? inputs.is_main : 0,
+      deliver_address: inputs.deliver_address ? inputs.deliver_address : deliver_address,
+      // deliver_detail_address: inputs.deliver_detail_address
+      //   ? inputs.deliver_detail_address
+      //   : deliver_detail_address || '',
+      reciever: inputs.reciever ? inputs.reciever : reciever,
+      reciever_phone: inputs.reciever_phone ? inputs.reciever_phone : reciever_phone,
+    });
+  }
+  function onSubmit(e) {
     e.preventDefault();
-    console.log(inputs);
-    // dispatch(modifyDestination(cookieAuth, inputs));
-    // window.opener.document.location.reload();
-    // window.self.close();
+    console.log('보내는데이터', inputs);
+    dispatch(modifyDestination(cookieAuth, inputs));
+    alert('수정이 완료되었습니다.');
+    window.opener.document.location.reload();
+    window.self.close();
   }
 
   function onChange(e) {
