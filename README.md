@@ -5,7 +5,8 @@ by Team Kurlabo FrontEnd
 
 <br>
 2021년 1월 25일부터 2021년 2월 26일까지(업데이트 기간 제외) <br>기획 1주,개발 4주의 일정으로 진행한 Kurlabo 프로젝트입니다.
-
+<br>
+<br>
 <br>
 
 ![마켓컬리](https://user-images.githubusercontent.com/76701139/120295932-96a9e680-c302-11eb-8ad1-d2e6f272518d.gif)
