@@ -21,7 +21,6 @@ by Team Kurlabo FrontEnd
 #기술 스택
 
 HTML|CSS|JS|REACT|React Saga|Redux thunk|Redux saga|Tailwind CSS |
-|------|---|---|
 |![html5](https://user-images.githubusercontent.com/76701139/120295990-a45f6c00-c302-11eb-8407-bbc32edd71c8.png)|[css3](https://user-images.githubusercontent.com/76701139/120296004-a7f2f300-c302-11eb-9b40-9659920b7f59.png)|![다운로드](https://user-images.githubusercontent.com/76701139/120296196-d7096480-c302-11eb-8414-3440ac8900f0.png)
 |![pasted-from-clipboard-1](https://user-images.githubusercontent.com/76701139/120296252-e5f01700-c302-11eb-96f9-cb8d93272fe6.png)|![pasted-from-clipboard-2](https://user-images.githubusercontent.com/76701139/120296263-e9839e00-c302-11eb-9ef0-085561294d17.png)|![redux-saga-logo](https://user-images.githubusercontent.com/76701139/120296704-5a2aba80-c303-11eb-873a-a3aa2361cc1d.png)|
 
