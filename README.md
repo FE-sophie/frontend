@@ -8,8 +8,7 @@ by Team Kurlabo FrontEnd
 
 
 
+![ezgif com-gif-maker (5)](https://user-images.githubusercontent.com/76701139/120290562-6a3f9b80-c2fd-11eb-810f-1b5a02dd61be.gif)
 
-
-https://user-images.githubusercontent.com/76701139/120273740-dd3f1700-c2e9-11eb-8d3d-e6812ce493a2.mp4
 
 
