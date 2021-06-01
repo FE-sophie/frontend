@@ -16,7 +16,8 @@ by Team Kurlabo FrontEnd
 <br>
 <br>
 <br>
-# 프로젝트 목표
+## 프로젝트 목표
+<br>
 <ul>
   <li>백엔드와의 협업을 통해 서로 공부한 것을 교환 및 활용하며 능력 향상</li>
 <li>원만한 갈등해결 및 상호 커뮤니케이션 능력 향상</li>
@@ -24,7 +25,10 @@ by Team Kurlabo FrontEnd
 <li>완성도 높은 결과물 도출</li>
 <li>Daily Scrum을 통해서 서로의 작업 프로세스 이해</li>
 </ul>
-# 기술 스택
+<br>
+
+## 기술 스택
+<br>
 
 HTML|CSS|JS|REACT|Redux thunk|Redux Saga|Tailwind CSS|
 |------|---|---|---|---|---|---|
