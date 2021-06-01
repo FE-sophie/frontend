@@ -20,9 +20,15 @@ by Team Kurlabo FrontEnd
 
 #기술 스택
 
-HTML|CSS|JS|REACT|Redux Saga|Redux thunk|Tailwind CSS|
+HTML|CSS|JS|REACT|Redux thunk|Redux Saga|Tailwind CSS|
 |------|---|---|---|---|---|---|
-|![html5](https://user-images.githubusercontent.com/76701139/120295990-a45f6c00-c302-11eb-8407-bbc32edd71c8.png)|![css3](https://user-images.githubusercontent.com/76701139/120296004-a7f2f300-c302-11eb-9b40-9659920b7f59.png)|![다운로드](https://user-images.githubusercontent.com/76701139/120296196-d7096480-c302-11eb-8414-3440ac8900f0.png)|![pasted-from-clipboard-1](https://user-images.githubusercontent.com/76701139/120296252-e5f01700-c302-11eb-96f9-cb8d93272fe6.png)|![pasted-from-clipboard-2](https://user-images.githubusercontent.com/76701139/120296263-e9839e00-c302-11eb-9ef0-085561294d17.png)|![redux-saga-logo](https://user-images.githubusercontent.com/76701139/120296704-5a2aba80-c303-11eb-873a-a3aa2361cc1d.png)|![ezgif com-gif-maker](https://user-images.githubusercontent.com/76701139/120306389-c8c04600-c30c-11eb-8d33-e49581bc3beb.png)|
+|![html](https://user-images.githubusercontent.com/76701139/120308415-0aea8700-c30f-11eb-83aa-c725afc543fc.png)|![css](https://user-images.githubusercontent.com/76701139/120308433-0f16a480-c30f-11eb-9ef4-376fd0048533.png)|![js](https://user-images.githubusercontent.com/76701139/120308449-12aa2b80-c30f-11eb-8aa9-6e152698dd0a.png)|![리액트](https://user-images.githubusercontent.com/76701139/120309149-e216c180-c30f-11eb-964f-94a0aee14934.png)|![thunk](https://user-images.githubusercontent.com/76701139/120310844-c7dde300-c311-11eb-83e4-6f14b554da86.png)|![saga](https://user-images.githubusercontent.com/76701139/120310874-d1ffe180-c311-11eb-8ce4-6d5942c2113a.png)|![tailwind](https://user-images.githubusercontent.com/76701139/120310902-d7f5c280-c311-11eb-9add-7baa3c7200de.png)|
+
+
+
+
+
+
 
 
 
