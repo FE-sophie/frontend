@@ -10,14 +10,16 @@ by Team Kurlabo FrontEnd
 ![마켓컬리](https://user-images.githubusercontent.com/76701139/120295932-96a9e680-c302-11eb-8ad1-d2e6f272518d.gif)
 
 
-
+<br>
+<br>
 #프로젝트 목표
--백엔드와의 협업을 통해 서로 공부한 것을 교환 및 활용하며 능력 향상
+<ul>
+  <li>백엔드와의 협업을 통해 서로 공부한 것을 교환 및 활용하며 능력 향상</li>
 -원만한 갈등해결 및 상호 커뮤니케이션 능력 향상
 -깃 플로우를 활용한 협업
 -완성도 높은 결과물 도출
 -Daily Scrum을 통해서 서로의 작업 프로세스 이해
-
+</ul>
 #기술 스택
 
 HTML|CSS|JS|REACT|Redux thunk|Redux Saga|Tailwind CSS|
