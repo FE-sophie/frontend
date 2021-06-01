@@ -6,4 +6,10 @@ by Team Kurlabo FrontEnd
 
 2021년 2월 01일부터 2월 26일까지(업데이트 기간 제외) 진행한 Kurlabo 프로젝트입니다.
 
-<iframe src='//gifs.com/embed/w0poO8' frameborder='0' scrolling='no' width='576px' height='360px' style='-webkit-backface-visibility: hidden;-webkit-transform: scale(1);' ></iframe>
+
+
+
+
+https://user-images.githubusercontent.com/76701139/120273740-dd3f1700-c2e9-11eb-8d3d-e6812ce493a2.mp4
+
+
