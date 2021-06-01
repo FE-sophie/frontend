@@ -22,7 +22,10 @@ by Team Kurlabo FrontEnd
 
 HTML|CSS|JS|REACT|Redux thunk|Redux Saga|Tailwind CSS|
 |------|---|---|---|---|---|---|
-|![html](https://user-images.githubusercontent.com/76701139/120308415-0aea8700-c30f-11eb-83aa-c725afc543fc.png)|![css](https://user-images.githubusercontent.com/76701139/120308433-0f16a480-c30f-11eb-9ef4-376fd0048533.png)|![js](https://user-images.githubusercontent.com/76701139/120308449-12aa2b80-c30f-11eb-8aa9-6e152698dd0a.png)|![리액트](https://user-images.githubusercontent.com/76701139/120309149-e216c180-c30f-11eb-964f-94a0aee14934.png)|![thunk](https://user-images.githubusercontent.com/76701139/120310844-c7dde300-c311-11eb-83e4-6f14b554da86.png)|![saga](https://user-images.githubusercontent.com/76701139/120310874-d1ffe180-c311-11eb-8ce4-6d5942c2113a.png)|![tailwind](https://user-images.githubusercontent.com/76701139/120310902-d7f5c280-c311-11eb-9add-7baa3c7200de.png)|
+|![html](https://user-images.githubusercontent.com/76701139/120313236-ab8f7580-c314-11eb-9d8b-c1c54dc8ae7e.png)
+|![css](https://user-images.githubusercontent.com/76701139/120313248-b0ecc000-c314-11eb-9c59-8700b9769577.png)
+|![js](https://user-images.githubusercontent.com/76701139/120313265-b518dd80-c314-11eb-877e-87af6c676202.png)
+|![리액트](https://user-images.githubusercontent.com/76701139/120309149-e216c180-c30f-11eb-964f-94a0aee14934.png)|![thunk](https://user-images.githubusercontent.com/76701139/120310844-c7dde300-c311-11eb-83e4-6f14b554da86.png)|![saga](https://user-images.githubusercontent.com/76701139/120310874-d1ffe180-c311-11eb-8ce4-6d5942c2113a.png)|![tailwind](https://user-images.githubusercontent.com/76701139/120310902-d7f5c280-c311-11eb-9add-7baa3c7200de.png)|
 
 
 
